@@ -28,6 +28,14 @@
         @apply text-[#0a1643] dark:text-[white] font-semibold
                 text-3xl mb-5 md:mb-0;
     }
+
+    h2 {
+        @apply text-[#0a1643] dark:text-[white] font-semibold text-lg;
+    }
+
+    p {
+        @apply text-gray-500 dark:text-gray-400 text-sm;
+    }
 }
 
 @layer components {
@@ -60,5 +68,19 @@
                 px-6 py-2 rounded-3xl
                 dark:hover:bg-[#525868] hover:bg-[#f6fafb] dark:active:bg-[#f35c51] active:bg-[#e0463f]
                 cursor-pointer;
+    }
+
+    .remove-button {
+        @apply  text-[#0a1643] dark:text-white border border-gray-500 text-sm font-light
+        text-center flex items-center justify-center
+        bg-white dark:bg-[#1f2535]
+        px-6 py-2 rounded-3xl
+        dark:hover:bg-[#525868] hover:bg-[#f6fafb] dark:active:bg-[#f35c51] active:bg-[#e0463f]
+        cursor-pointer;
+    }
+
+    .card {
+        @apply  border border-gray-500 bg-white dark:bg-[#1f2535]
+                flex flex-col justify-between rounded-xl p-4 h-44 w-sm;
     }
 }

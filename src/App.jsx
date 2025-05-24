@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import Extensions from './components/Extensions.jsx'
+import Card from './components/Card.jsx'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <ThemeProvider>
         <Header />
         <Extensions />
+        <Card />
       </ThemeProvider>
     </div>
   )

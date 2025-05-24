@@ -11,13 +11,13 @@ const Header = () => {
           <Logo color={isDark ? 'white' : 'black'} />
         </div>
         <div>
-          <div className="toggler" onClick={() => setIsDark(!isDark)}>
+          <button className="toggler" onClick={() => setIsDark(!isDark)}>
             {isDark ? (
               <img src="/icon-sun.svg" alt="switch" />
             ) : (
               <img src="/icon-moon.svg" alt="switch" />
             )}
-          </div>
+          </button>
         </div>
       </div>
     </header>

@@ -1,7 +1,11 @@
 import React from 'react'
 import Switch from './Switch.jsx'
 
-const Card = ({ extension: { iconPath, title, description } }) => {
+const Card = ({
+  extension: { iconPath, title, description },
+  isSelected,
+  onToggle
+}) => {
   return (
     <div className="card">
       <div className="flex flex-row gap-4">
@@ -13,7 +17,7 @@ const Card = ({ extension: { iconPath, title, description } }) => {
       </div>
       <div className="flex flex-row justify-between items-center">
         <button className="remove-button">Remove</button>
-        <Switch />
+        <Switch isSelected={isSelected} onToggle={onToggle} />
       </div>
     </div>
   )

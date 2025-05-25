@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Switch = () => {
-  const [isSelected, setIsSelected] = useState(false)
+const Switch = ({ isSelected, onToggle }) => {
   return (
     <button
-      onClick={() => setIsSelected(!isSelected)}
+      onClick={onToggle}
       className={`flex w-10 h-5 rounded-full transition-all duration-500 ${isSelected ? 'bg-orange-500' : 'dark:bg-gray-600 bg-[#c6c6c8]'}`}
     >
       <span

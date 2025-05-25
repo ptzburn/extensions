@@ -1,5 +1,5 @@
 import React from 'react'
-import ToggleButton from './ToggleButton.jsx'
+import Switch from './Switch.jsx'
 
 const Card = ({ extension: { iconPath, title, description } }) => {
   return (
@@ -13,7 +13,7 @@ const Card = ({ extension: { iconPath, title, description } }) => {
       </div>
       <div className="flex flex-row justify-between items-center">
         <button className="remove-button">Remove</button>
-        <ToggleButton disableRipple />
+        <Switch />
       </div>
     </div>
   )

@@ -30,7 +30,7 @@ const ExtensionList = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row w-xs md:w-xl lg:w-7xl md:justify-between items-center mt-12 md:mt-14">
+      <div className="flex flex-col md:flex-row w-xs md:w-xl lg:w-7xl md:justify-between items-center mt-12 md:mt-14 mb-10">
         <h1>Extensions List</h1>
         <div className="flex">
           <button

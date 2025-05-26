@@ -4,7 +4,8 @@ import Switch from './Switch.jsx'
 const Card = ({
   extension: { iconPath, title, description },
   isSelected,
-  onToggle
+  onToggle,
+  remove
 }) => {
   return (
     <div className="card">
@@ -16,7 +17,9 @@ const Card = ({
         </div>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <button className="remove-button">Remove</button>
+        <button onClick={remove} className="remove-button">
+          Remove
+        </button>
         <Switch isSelected={isSelected} onToggle={onToggle} />
       </div>
     </div>

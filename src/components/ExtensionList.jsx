@@ -10,15 +10,22 @@ const ExtensionList = () => {
     {}
   )
   const [states, setStates] = useState(initialStates)
+  const [removed, setRemoved] = useState([])
 
   const toggle = id => {
     setStates(prevState => ({ ...prevState, [id]: !prevState[id] }))
   }
 
+  const remove = id => {
+    setRemoved(removed.concat(id))
+  }
+
   const filteredExtensions = extensions.filter(extension => {
-    if (filter === 'all') return true
-    if (filter === 'active') return states[extension.id]
-    if (filter === 'inactive') return !states[extension.id]
+    if (filter === 'all' && !removed.includes(extension.id)) return true
+    if (filter === 'active' && !removed.includes(extension.id))
+      return states[extension.id]
+    if (filter === 'inactive' && !removed.includes(extension.id))
+      return !states[extension.id]
   })
 
   return (
@@ -54,9 +61,13 @@ const ExtensionList = () => {
               extension={extension}
               isSelected={states[extension.id]}
               onToggle={() => toggle(extension.id)}
+              remove={() => remove(extension.id)}
             />
           ))}
         </ul>
+        {filteredExtensions.length === 0 && (
+          <p className="mt-50 text-xl text-white flex items-center justify-center">{`No ${filter} extensions`}</p>
+        )}
       </div>
     </>
   )

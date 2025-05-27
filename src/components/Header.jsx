@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from './Logo.jsx'
 import { useDark } from '../context/ThemeContext.jsx'
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm }) => {
   const { isDark, setIsDark } = useDark()
   return (
     <header>
@@ -10,7 +10,14 @@ const Header = () => {
         <div className="logo">
           <Logo color={isDark ? 'white' : 'black'} />
         </div>
-        <div>
+        <div className="flex gap-2">
+          <input
+            className="search"
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+          />
           <button className="toggler" onClick={() => setIsDark(!isDark)}>
             {isDark ? (
               <img src="/icon-sun.svg" alt="switch" />

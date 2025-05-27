@@ -14,12 +14,18 @@
     }
 
     body {
-        @apply  bg-gradient-to-b from-[#ebf2fc] to-[#effbf9]
+        @apply  bg-[#effbf9] dark:bg-[#0a1640]
+                bg-gradient-to-b from-[#ebf2fc] to-[#effbf9]
                 dark:from-[#04091c] dark:to-[#0a1640]
-                bg-fixed bg-no-repeat font-noto-sans min-h-screen;
+                bg-fixed bg-no-repeat font-noto-sans min-h-dvh;
     }
 
     button {
+        @apply focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-white focus:ring-[#cc7378]
+        dark:focus:ring-[#b76468] dark:focus:ring-offset-black
+    }
+
+    input {
         @apply focus:ring-2 focus:outline-none focus:ring-offset-2 focus:ring-offset-white focus:ring-[#cc7378]
         dark:focus:ring-[#b76468] dark:focus:ring-offset-black
     }
@@ -56,7 +62,7 @@
     .navbar {
         @apply  flex items-center justify-between
                 bg-white dark:bg-[#1f2535]
-                h-14 w-xs mt-3 rounded-lg
+                h-14 w-sm mt-3 rounded-lg
                 md:h-15 md:w-xl md:mt-4 md:rounded-xl
                 lg:h-16 lg:w-7xl lg:mt-6 lg:rounded-2xl;
     }
@@ -84,6 +90,11 @@
     .card {
         @apply  border border-gray-500 bg-white dark:bg-[#1f2535]
                 flex flex-col justify-between rounded-xl p-4 h-44;
+    }
+
+    .search {
+        @apply  rounded-md h-11 md:h-12 flex items-center justify-center pl-4 w-24 md:w-32 md:rounded-xl
+                bg-[#edeeed] dark:bg-[#2e344c] text-[#0a1643] dark:text-white;
     }
 
 }

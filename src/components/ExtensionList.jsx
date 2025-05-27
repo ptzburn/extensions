@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Card from './Card.jsx'
 import extensions from '../assets/extensions.js'
+import { AnimatePresence, motion } from 'motion/react'
 
-const ExtensionList = () => {
+const ExtensionList = ({ searchTerm }) => {
   const [filter, setFilter] = useState('all')
 
   const initialStates = extensions.reduce(
@@ -17,20 +18,35 @@ const ExtensionList = () => {
   }
 
   const remove = id => {
-    setRemoved(removed.concat(id))
+    if (window.confirm('Are you sure you want to remove this extension?')) {
+      setRemoved(removed.concat(id))
+    }
   }
 
   const filteredExtensions = extensions.filter(extension => {
-    if (filter === 'all' && !removed.includes(extension.id)) return true
-    if (filter === 'active' && !removed.includes(extension.id))
+    if (
+      filter === 'all' &&
+      !removed.includes(extension.id) &&
+      extension.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+      return true
+    if (
+      filter === 'active' &&
+      !removed.includes(extension.id) &&
+      extension.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
       return states[extension.id]
-    if (filter === 'inactive' && !removed.includes(extension.id))
+    if (
+      filter === 'inactive' &&
+      !removed.includes(extension.id) &&
+      extension.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
       return !states[extension.id]
   })
 
   return (
     <>
-      <div className="flex flex-col md:flex-row w-xs md:w-xl lg:w-7xl md:justify-between items-center mt-12 md:mt-14">
+      <div className="flex flex-col md:flex-row w-sm md:w-xl lg:w-7xl md:justify-between items-center mt-12 md:mt-14">
         <h1>Extensions List</h1>
         <div className="flex">
           <button
@@ -53,22 +69,33 @@ const ExtensionList = () => {
           </button>
         </div>
       </div>
-      <div className="mt-10 w-full max-w-xs md:max-w-xl lg:max-w-7xl mx-auto">
+      <div className="mt-10 w-full max-w-sm md:max-w-xl lg:max-w-7xl mx-auto">
         <ul>
-          {filteredExtensions.map(extension => (
-            <Card
-              key={extension.id}
-              extension={extension}
-              isSelected={states[extension.id]}
-              onToggle={() => toggle(extension.id)}
-              remove={() => remove(extension.id)}
-            />
-          ))}
+          <AnimatePresence>
+            {filteredExtensions.map(extension => (
+              <motion.div
+                key={extension.id}
+                layout
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card
+                  extension={extension}
+                  isSelected={states[extension.id]}
+                  onToggle={() => toggle(extension.id)}
+                  remove={() => remove(extension.id)}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </ul>
         {filteredExtensions.length === 0 && (
           <p className="mt-50 text-xl text-white flex items-center justify-center">{`No ${filter} extensions`}</p>
         )}
       </div>
+      <div className="min-h-20"></div>
     </>
   )
 }
